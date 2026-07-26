@@ -1,0 +1,53 @@
+# 🏗️ Gerador de Orçamento — Green Formwork Brasil
+
+Site em **Streamlit** que gera o PDF de orçamento no padrão GFW (modelo SALLINAS).
+Você preenche o nome da obra e as quantidades de cada item; o app calcula tudo
+com os **valores unitários de base** (FOB China, USD) e gera um PDF de 2 páginas
+idêntico ao modelo, pronto para baixar.
+
+## Como funciona
+
+1. Preencha o **nome da obra**, o número de **containers** e as **quantidades** de cada equipamento.
+2. Informe o **reescoramento** (percentual e quantidade de escoras B35), os **detalhes da execução** e a **economia**.
+3. Clique em **Gerar PDF do orçamento** e depois em **Baixar**.
+
+Os valores unitários de base já estão configurados no código (`PRECOS_BASE` em
+`app.py`). Se a tabela de preços mudar um dia, dá para ajustar na própria tela,
+no expansor "Valores unitários de base (avançado)", ou editar direto no código.
+
+## Rodar no seu computador
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Abra o endereço que aparecer no terminal (normalmente http://localhost:8501).
+
+## Publicar no GitHub + Streamlit Cloud (site online e grátis)
+
+1. Crie um repositório novo no GitHub (ex.: `orcamento-gfw`) e envie **todos** os
+   arquivos desta pasta (incluindo a pasta `assets/`, que tem as fotos dos
+   equipamentos e o logo usados no PDF):
+   ```bash
+   git init
+   git add .
+   git commit -m "Gerador de orçamento GFW"
+   git branch -M main
+   git remote add origin https://github.com/SEU_USUARIO/orcamento-gfw.git
+   git push -u origin main
+   ```
+2. Acesse https://share.streamlit.io e entre com a sua conta do GitHub.
+3. Clique em **New app**, escolha o repositório, branch `main` e o arquivo
+   `app.py`, e clique em **Deploy**.
+4. Pronto — o site fica no ar com um link do tipo
+   `https://seu-app.streamlit.app`, acessível de qualquer lugar.
+
+## Estrutura do projeto
+
+```
+├── app.py             # Interface Streamlit (formulário + cálculo + download)
+├── pdf_generator.py   # Desenho do PDF (layout idêntico ao modelo SALLINAS)
+├── requirements.txt   # Dependências (streamlit, reportlab, pillow)
+└── assets/            # Fotos dos equipamentos e logo GFW usados no PDF
+```
